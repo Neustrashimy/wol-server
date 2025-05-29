@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ _('端末登録') }}
+{% endblock %}
+{% block content %}
+{%- with msgs=get_flashed_messages(with_categories=true) %}
+{% if msgs %}
+<div class="flash-container">
+    {% for category, msg in msgs %}
+    <div class="flash {{ category }}">{{ msg }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+{%- endwith %}
+<form method="post">
+    <label>{{ _('名前') }}<input name="name" value="{{ name|default('') }}" required></label>
+    <label>{{ _('MACアドレス') }}<input name="mac_address" value="{{ mac_address|default('') }}" required
+            placeholder="aa:bb:cc:dd:ee:ff"
+            pattern="^([0-9A-Fa-f]{2}([:\-]?)){5}[0-9A-Fa-f]{2}$|^[0-9A-Fa-f]{12}$"></label>
+    <label>{{ _('IPアドレス') }}<input name="ip_address" value="{{ ip_address|default('') }} " placeholder="192.168.0.1"
+            pattern="^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$"></label>
+    <label>{{ _('備考') }}<input name="note" value="{{ note|default('') }}"></label>
+    <button type="submit">{{ _('登録') }}</button>
+</form>
+{% endblock %}

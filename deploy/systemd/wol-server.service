@@ -1,0 +1,20 @@
+[Unit]
+Description=WoL Server Web API
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/wol-server
+
+RuntimeDirectory=wol-server
+RuntimeDirectoryMode=0755
+
+ExecStart=/home/pi/wol-server/.venv/bin/gunicorn \
+  --workers 2 \
+  --bind unix:/run/wol-server/wol.sock \
+  app:create_app
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,3 +1,7 @@
+.venv/
 venv/
+.pytest_cache/
+working_documents/
 *.db
 *.code-workspace
+__pycache__

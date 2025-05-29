@@ -1,0 +1,244 @@
+/*────────────────────────────────────────
+  リセット＆ボックス設定
+────────────────────────────────────────*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+/*────────────────────────────────────────
+  グリッドレイアウト：ヘッダー／メイン／フッター
+────────────────────────────────────────*/
+.app-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+}
+
+.app-header {
+    background: #ffffff;
+    border-bottom: 2px solid #e1e4e8;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #212529;
+    text-decoration: none;
+}
+
+.global-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.global-nav a {
+    color: #212529;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.global-nav a:hover {
+    background: #e9ecef;
+}
+
+/* ────────────────────────────────────────
+   メインコンテンツ
+──────────────────────────────────────── */
+.app-main {
+    padding: 1rem 2rem;
+    /* 上下1rem、左右2remに拡大 */
+    overflow-y: auto;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    /* 上下1rem、左右2remに拡大 */
+}
+
+/* ────────────────────────────────────────
+   大画面ではさらに余白を強化
+──────────────────────────────────────── */
+@media (min-width: 1000px) {
+    .app-main {
+        padding: 1rem 4rem;
+        /* 左右4rem */
+    }
+
+    .container {
+        padding: 1rem 3rem;
+        /* 左右3rem */
+    }
+}
+
+/*────────────────────────────────────────
+  汎用ボタンスタイル
+────────────────────────────────────────*/
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0.5rem 1rem 0;
+    background: #007bff;
+    color: #fff;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn:hover,
+.btn:focus {
+    background: #0056b3;
+    outline: none;
+}
+
+/*────────────────────────────────────────
+  スプレッドシート風テーブル
+────────────────────────────────────────*/
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid #ccd0d5;
+    text-align: left;
+}
+
+th {
+    background: #e9ecef;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+/*────────────────────────────────────────
+  セル中央揃え
+────────────────────────────────────────*/
+table th,
+table td {
+    text-align: center;
+}
+
+/*────────────────────────────────────────
+  操作列をコンテンツ幅にフィット
+────────────────────────────────────────*/
+table th.actions,
+table td.actions {
+    white-space: nowrap;
+    width: 1%;
+}
+
+/*────────────────────────────────────────
+  フラッシュメッセージ
+────────────────────────────────────────*/
+.flash-container {
+    margin-bottom: 1rem;
+}
+
+.flash.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+}
+
+/*────────────────────────────────────────
+  フォーム要素
+────────────────────────────────────────*/
+form label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+form button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+/*────────────────────────────────────────
+  フッター
+────────────────────────────────────────*/
+.app-footer {
+    background: #ffffff;
+    border-top: 2px solid #e1e4e8;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/*────────────────────────────────────────
+  レスポンシブ調整
+────────────────────────────────────────*/
+@media (max-width: 768px) {
+    .global-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .container {
+        padding: 0.75rem;
+    }
+
+    th,
+    td {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{{ url_for('add_device') }}" class="btn">{{ _('端末を追加') }}</a>
+
+<div class="table-responsive">
+    <table>
+        <tr>
+            <th>{{ _('名前') }}</th>
+            <th>{{ _('MAC') }}</th>
+            <th>{{ _('IP') }}</th>
+            <th>{{ _('状態') }}</th>
+            <th class="actions">{{ _('操作') }}</th>
+        </tr>
+        {% for d in devices %}
+        <tr id="row-{{ d.id }}">
+            <td>{{ d.name }}</td>
+            <td>{{ d.mac_address }}</td>
+            <td>{{ d.ip_address or '-' }}</td>
+            <td id="status-{{ d.id }}">{{ ping_status.get(d.id, '-') }}</td>
+            <td class="actions">
+                <button class="btn action-btn" data-action="wake" data-id="{{ d.id }}">{{ _('起動') }}</button>
+                <button class="btn action-btn" data-action="delete" data-id="{{ d.id }}">{{ _('削除') }}</button>
+                {% if d.ip_address %}
+                <button class="btn action-btn" data-action="ping" data-id="{{ d.id }}">{{ _('疎通確認') }}</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ g.get('lang', 'ja') }}">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+    <title>
+        {% block title %}
+        Lightweight WoL Server
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <header class="app-header">
+            <h1 class="logo"><a href="{{ url_for('index') }}">{{ _('Lightweight WoL Server') }}</a></h1>
+            <nav class="global-nav">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('index') }}">{{ _('端末一覧') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('add_device') }}">{{ _('端末登録') }}</a>
+                    </li>
+                    <!-- 他メニューがあればここに -->
+                </ul>
+            </nav>
+        </header>
+
+        <main class="app-main">
+            {% block content %}
+
+            {% endblock %}
+        </main>
+
+        <footer class="app-footer">
+            <small></small>
+        </footer>
+    </div>
+    <script>
+        window.I18N = {
+            wakeSuccess: "{{ _('Magic Packet を送信しました。') }}",
+            deleteConfirm: "{{ _('本当に削除しますか？') }}",
+            fetchError: "{{ _('通信エラーが発生しました') }}",
+            errorPrefix: "{{ _('エラー：') }}"
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
