@@ -101,9 +101,15 @@ def create_app():
         ).fetchone()
         if not device or not device["ip_address"]:
             return jsonify(success=False, error="IP address missing"), 400
-        proc = subprocess.run(
-            ["ping", "-c", "1", device["ip_address"]], stdout=subprocess.DEVNULL, timeout=5
-        )
+        try:
+            proc = subprocess.run(
+                ["ping", "-c", "1", device["ip_address"]],
+                stdout=subprocess.DEVNULL,
+                timeout=5,
+            )
+        except subprocess.TimeoutExpired:
+            return jsonify(success=False, error="Ping timed out"), 504
+
         status = "online" if proc.returncode == 0 else "offline"
         return jsonify(success=True, status=status)
 
